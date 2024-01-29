@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 
-const LoginPage = () => {
+const SigninPage = () => {
   const [user, setUser] = useState({
     email: "",
     password: ""
@@ -96,4 +96,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SigninPage;

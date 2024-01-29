@@ -40,7 +40,7 @@ export async function POST(request:NextRequest){
 
 
         const response = NextResponse.json({
-            message: "Login succssfull",
+            message: "Signin succssful",
             success: true,
         })
 

@@ -25,7 +25,7 @@ const Signup = () => {
       if(response.data.error)
         alert(`${response.data.error}`)
       else
-        router.push("/login");
+        router.push("/signin");
     } catch (error) { 
         console.log(error)
     }
@@ -108,9 +108,9 @@ const Signup = () => {
         </button>
       <p className="mt-2 stext-center text-black">
             {"Already registered? "}
-            <Link href={'/login'}>
+            <Link href={'/signin'}>
               <span className="text-blue-500 hover:underline">
-                {'Login here'}
+                {'Signin here'}
               </span>
             </Link>
           </p>
