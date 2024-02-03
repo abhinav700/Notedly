@@ -18,7 +18,6 @@ const NavBar = () => {
       const response = await axios.get("/api/users/logout");
       router.push("/");
     } catch (error: any) {
-      console.log(error);
     }
   };
 
