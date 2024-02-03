@@ -30,7 +30,7 @@ export async function POST(request : NextRequest) {
         })
         const savedNote = await newNote.save()
 
-        return  NextResponse.json({savedNote, success:true, status: 200});
+        return  NextResponse.json({note: savedNote, success:true, status: 200});
     } catch (error) {
         
         return NextResponse.json({success:false, error, error_message:"Was not able to create the notes"});
