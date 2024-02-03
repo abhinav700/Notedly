@@ -6,12 +6,9 @@ import { connect } from "@/dbConfig/connect";
 connect()
 export async function POST(request:NextRequest){
     try {
-        console.log(request.nextUrl.pathname);
         const reqJson = await request.json();
         const reqBody = request.body;
 
-        console.log("reqJson : ", reqJson);
-        console.log("reqBody : ", reqBody);
         
         const {email, password} = reqJson;
         const user = await User.findOne({email});

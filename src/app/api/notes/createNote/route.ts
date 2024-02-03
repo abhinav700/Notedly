@@ -1,13 +1,14 @@
 import { connect } from "@/dbConfig/connect";
 import { verifyJwtToken} from '@/lib/jwt'
 import Note from "@/models/noteModel";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 connect()
 export async function POST(request : NextRequest) {
 
     try {
-        const token = request.headers.get('auth-token');
+        const token =  cookies().get("token")!.value;
         if(!token){
             return NextResponse.json({
                 status:401,
@@ -15,12 +16,9 @@ export async function POST(request : NextRequest) {
                 success:false
             })
         }
-        console.log("TOKEN IS : ", token);
         const userData:any = verifyJwtToken(token)!;
-        console.log("USER DATA IS : ", userData);
 
         const {title, body}  = await request.json();
-        console.log(title,body);
         const create_date: Date = new Date();
         const email:String = userData.email;
         
@@ -31,7 +29,6 @@ export async function POST(request : NextRequest) {
             user:email,
         })
         const savedNote = await newNote.save()
-        console.log("SUCCESSFULLY CREATED NEW NOTE");
 
         return  NextResponse.json({savedNote, success:true, status: 200});
     } catch (error) {

@@ -14,7 +14,6 @@ export async function POST(request : NextRequest){
         const user = await User.findOne({ $or: [{ email }, { username }] });
         
         if(user){
-            console.log("User already exists");
             return NextResponse.json({error: "email or username is already used"})
         }
     
@@ -29,7 +28,6 @@ export async function POST(request : NextRequest){
 
         const savedUser = await newUser.save();
         
-        console.log("User successfully created");
         return NextResponse.json({
             message : "User created successfully",
             success: true,

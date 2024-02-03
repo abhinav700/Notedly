@@ -1,13 +1,14 @@
 import { connect } from "@/dbConfig/connect";
 import { verifyJwtToken } from "@/lib/jwt";
 import Note from "@/models/noteModel";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 connect();
 export async function DELETE(request: NextRequest) {
   try {
+    const token =  cookies().get("token")!.value;
     const { id } = await request.json();
-    const token = request.headers.get("auth-token");
     if (!token) {
       return NextResponse.json({
         status: 401,
@@ -15,9 +16,7 @@ export async function DELETE(request: NextRequest) {
         message: "Invalid auth-token",
       });
     }
-    console.log("TOKEN IS : ", token);
     const userData: any = verifyJwtToken(token);
-    console.log("USER DATA IS : ", userData);
 
     const note = await Note.findById(id);
     if (!note) {
@@ -27,7 +26,6 @@ export async function DELETE(request: NextRequest) {
         message: "Note does not exist",
       });
     }
-    console.log("FOUND THE NOTE TO BE DELETED: ", note);
 
     if (note.user == userData.email) {
       await Note.findByIdAndDelete(id);
