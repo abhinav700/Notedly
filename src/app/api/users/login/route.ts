@@ -11,8 +11,8 @@ export async function POST(request:NextRequest){
 
         
         const {email, password} = reqJson;
-        const user = await User.findOne({email});
-        
+        const user = await User.findOne({ email });
+
         if(!user){
             return NextResponse.json({
                    stauts:404,
@@ -33,16 +33,17 @@ export async function POST(request:NextRequest){
             email:user.email
         };
 
-        const token = jwt.sign(tokenData, process.env.NEXT_PUBLIC_JWT_SECRET!, {expiresIn :'2h'});
+        const token = jwt.sign(tokenData, process.env.NEXT_PUBLIC_JWT_SECRET!, { expiresIn: '2h' });
 
 
         const response = NextResponse.json({
             message: "Signin succssful",
             success: true,
+            user: tokenData
         })
 
 
-        response.cookies.set("token", token, {httpOnly: true});
+        response.cookies.set("token", token, {httpOnly: true,maxAge: 2*3600* 1000  });
         return response;
     } catch (error: any) {
         return NextResponse.json({error: error.message, status:500})

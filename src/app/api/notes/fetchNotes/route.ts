@@ -4,8 +4,8 @@ import Note from "@/models/noteModel";
 import { NextRequest, NextResponse } from "next/server";
 import {cookies} from "next/headers";
 
+connect()
 export async function GET(request : NextRequest, response: NextResponse) {
-    await connect()
 
     try {
         const token =  cookies().get("token")!.value;

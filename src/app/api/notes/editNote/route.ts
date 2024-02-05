@@ -26,24 +26,26 @@ export async function PUT(request: NextRequest) {
         message: "Note does not exist",
       });
     }
-
-    if (note.user == userData.email) {
-      await Note.findByIdAndUpdate(id,{
-            title,
-            body
-      });
+    
+    if (note.user != userData.email) {
       return NextResponse.json({
-        status: 200,
-        success: true,
-        message: "Note updated succesfully",
+        status: 500,
+        success: false,
+        message: "Invalid User",
       });
     }
 
+   const updatedNote = await Note.findByIdAndUpdate(id,{
+      title,
+      body
+    });
     return NextResponse.json({
-        status:500,
-        success:false,
-        message:"Operation failed"
+        note:updatedNote,
+        status:200,
+        success:true,
+        message:"Note successfully updated"
     })
+
   } catch (error) {
     return NextResponse.json({
       success: false,
