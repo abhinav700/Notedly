@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "../components/NavBar";
-
+import { Provider } from "react-redux";
+import {store} from "@/store/store";
+import CustomProvider from "@/store/provider";
 const inter = Inter({ subsets: ["latin"] });
+import 'bootstrap/dist/css/bootstrap.css';
 
 export const metadata: Metadata = {
   title: "Notedly",
@@ -19,8 +22,10 @@ export default function RootLayout({
     <>
       <html lang="en">
         <body className={inter.className}>
-          <NavBar/>
+          <CustomProvider>
+            <NavBar />
             {children}
+          </CustomProvider>
         </body>
       </html>
     </>
