@@ -1,10 +1,14 @@
 "use client"
+import { useAppDispatch } from '@/hooks';
+import User from '@/models/userModel';
+import { setUserData } from '@/store/userSlice';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 
 const SigninPage = () => {
+  const dispatch = useAppDispatch();
   const [user, setUser] = useState({
     email: "",
     password: ""
@@ -30,11 +34,11 @@ const SigninPage = () => {
     try{
       setLoading(true);
       const response = await axios.post("/api/users/login", user);
-      console.log("Login Success")
-      router.push('/profile');
+      const fetchedUser = await response.data.user;
+      dispatch(setUserData(fetchedUser));
+      router.push(`/notes`);
     }
     catch(error:any){
-      console.log("WE ARE INSIDE CATCH BLOCK");
       console.log(error)
     }
     finally{
