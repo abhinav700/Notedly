@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/models/noteModel.js", "src/store/provider.js", "src/store/store.ts", "src/store/notesSlice.js", "src/store/userSlice.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/models/noteModel.js", "src/redux/providerj.ts", "src/redux/store.ts", "src/redux/notesSlice.ts", "src/redux/userSlice.ts"],
   "exclude": ["node_modules"]
 }

@@ -43,7 +43,7 @@ export async function POST(request:NextRequest){
         })
 
 
-        response.cookies.set("token", token, {httpOnly: true,maxAge: 2*3600* 1000  });
+        response.cookies.set("token", token, {httpOnly: true,maxAge: 2*3600 });
         return response;
     } catch (error: any) {
         return NextResponse.json({error: error.message, status:500})

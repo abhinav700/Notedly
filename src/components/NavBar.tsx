@@ -1,6 +1,6 @@
 "use client";
-import { useAppDispatch } from "@/hooks";
-import { setUserData } from "@/store/userSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { setUserData } from "@/redux/userSlice";
 import axios from "axios";
 import { useRouter, usePathname } from "next/navigation";
 import React from "react";

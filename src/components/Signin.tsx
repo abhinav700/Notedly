@@ -1,7 +1,7 @@
 "use client"
-import { useAppDispatch } from '@/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import User from '@/models/userModel';
-import { setUserData } from '@/store/userSlice';
+import { setUserData } from '@/redux/userSlice';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
