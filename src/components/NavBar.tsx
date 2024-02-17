@@ -19,7 +19,7 @@ const NavBar = () => {
     try {
       const response = await axios.get("/api/users/logout");
       dispatch(setUserData({email:"", username:"", id:''}))
-      router.push("/");
+      router.push("/signin");
     } catch (error: any) {
     }
   };
