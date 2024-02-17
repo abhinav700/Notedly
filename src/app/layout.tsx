@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 const inter = Inter({ subsets: ["latin"] });
 import 'bootstrap/dist/css/bootstrap.css';
 import StoreProvider from "@/redux/StoreProvider";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export const metadata: Metadata = {
   title: "Notedly",
