@@ -17,7 +17,7 @@ export const AddNoteModal = () => {
     e.preventDefault();
     dispatch(addNote(note));
     setShow(false);
-    router.push("/notes")
+    setNote({title:"", body:""})
   };
 
   const onChange = (e: any) => {
