@@ -85,7 +85,7 @@ export const AddNoteModal = () => {
             Close
           </Button>
           <Button  disabled={note.title.length < 5 || note.body.length < 5} variant="primary" onClick={handleClick}>
-            Create The Note
+            Create Note
           </Button>
         </Modal.Footer>
       </Modal>
