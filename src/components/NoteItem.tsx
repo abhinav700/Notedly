@@ -12,11 +12,20 @@ const Noteitem = (props: any) => {
 
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setshowDeleteModal] = useState(false);
+  const [showViewModal, setshowViewNoteModal] = useState(false);
 
+  const handleEditShow = (e: any) => {
+    e.stopPropagation();
+    setShowEditModal(true);
+  };
   const handleEditClose = () => setShowEditModal(false);
-  const handleEditShow = () => setShowEditModal(true);
-  const handleDeleteShow = () => setshowDeleteModal(true);
+  const handleDeleteShow = (e: any) => {
+    e.stopPropagation();
+    setshowDeleteModal(true);
+  };
   const handleDeleteClose = () => setshowDeleteModal(false);
+  const handleViewNoteShow = () => setshowViewNoteModal(true);
+  const handleViewNoteClose = () => setshowViewNoteModal(false);
 
   const dispatch = useAppDispatch();
 
@@ -36,35 +45,54 @@ const Noteitem = (props: any) => {
   };
 
   return (
-    <div className="my-3">
-      <Card style={{ width: "18rem", height: "18rem" }}>
-        <Card.Body>
-          <Card.Title>
+    <>
+      <div style={{ height: "20rem", width: "18rem" }}>
+        <Card
+          onClick={handleViewNoteShow}
+          style={{ width: "100%", height: "80%" }}
+          className="mx-4 mt-3 hover:border-black cursor-pointer"
+        >
+          <Card.Body>
+            <Card.Title>
+              {
+                <Card.Title>
+                  {note.title.length <= 54
+                    ? note.title
+                    : note.title.substr(0, 58) + "..."}
+                </Card.Title>
+              }
+            </Card.Title>
             {
-              <Card.Title>
-                {note.title.length <= 54
-                  ? note.title
-                  : note.title.substr(0, 58) + "..."}
-              </Card.Title>
+              <Card.Text style={{ height: "65%" }}>
+                {note.body.length <= 300
+                  ? note.body
+                  : note.body.substr(0, 250) + "..."}
+              </Card.Text>
             }
-          </Card.Title>
-          {
-            <Card.Text>
-              {note.body.length <= 300
-                ? note.body
-                : note.body.substr(0, 250) + "..."}
-            </Card.Text>
-          } 
-          <i
-            className="bi bi-pencil-square hover:cursor-pointer"
-            onClick={handleEditShow}
-          ></i>
-          <i
-            className="bi mx-3 bi-trash3 hover:cursor-pointer"
-            onClick={handleDeleteShow}
-          ></i>
-        </Card.Body>
-      </Card>
+          </Card.Body>
+          <div className="mx-1 flex-row">
+            <i
+              className="bi bi-pencil-square hover:cursor-pointer"
+              onClick={handleEditShow}
+            ></i>
+            <i
+              className="bi mx-3 bi-trash3 hover:cursor-pointer"
+              onClick={handleDeleteShow}
+            ></i>
+          </div>
+        </Card>
+      </div>
+      {/* Modal for viewing Notes */}
+      <Modal show={showViewModal} onHide={handleViewNoteClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{note.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container my-3 flex justify-center items-center flex-col">
+            <div>{note.body}</div>
+          </div>
+        </Modal.Body>
+      </Modal>
 
       {/* Modal for editing notes */}
       <Modal show={showEditModal} onHide={handleEditClose}>
@@ -143,7 +171,7 @@ const Noteitem = (props: any) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };
 
