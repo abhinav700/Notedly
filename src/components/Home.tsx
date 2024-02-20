@@ -19,5 +19,5 @@ const Home = () => {
     </div>
   );
 };
-
+Home.displayName = "Home"
 export default Home;

@@ -118,5 +118,5 @@ const Signup = () => {
     </div>
   );
 };
-
+Signup.displayName = "Signup";
 export default Signup;

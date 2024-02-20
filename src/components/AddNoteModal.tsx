@@ -8,7 +8,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export const AddNoteModal = () => {
+const AddNoteModal = () => {
   const [note, setNote] = useState({title:"", body:""});
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -93,3 +93,5 @@ export const AddNoteModal = () => {
     </>
   );
 };
+AddNoteModal.displayName = "AddNoteModal"
+export default AddNoteModal;

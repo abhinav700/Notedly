@@ -174,5 +174,5 @@ const Noteitem = (props: any) => {
     </>
   );
 };
-
+Noteitem.displayName = "Noteitem"
 export default Noteitem;

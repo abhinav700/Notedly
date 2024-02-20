@@ -99,5 +99,5 @@ const SigninPage = () => {
     </div>
   );
 };
-
+SigninPage.displayName= "SigninPage"
 export default SigninPage;

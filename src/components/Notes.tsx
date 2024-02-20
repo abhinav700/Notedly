@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "next-client-cookies";
-import { AddNoteModal } from "./AddNoteModal";
+import  AddNoteModal  from "./AddNoteModal";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchNotes } from "@/redux/notesSlice";
 import Noteitem from "./NoteItem";
