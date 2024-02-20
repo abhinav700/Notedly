@@ -88,7 +88,7 @@ const Noteitem = (props: any) => {
           <Modal.Title>{note.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="container my-3 flex justify-center items-center flex-col">
+          <div className="container my-3">
             <div>{note.body}</div>
           </div>
         </Modal.Body>
