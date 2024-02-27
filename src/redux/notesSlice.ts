@@ -34,26 +34,37 @@ export const notesSlice = createSlice({
     reducers:{
         intializeNotes:(state,action)=>{
             console.log("INITIALIZE NOTES EXECUTED")
-            return {...state, notesData:[], notesNotFetched:true}
+            state = {
+                ...state,
+                notesData:[],
+                notesNotFetched:true
+            }
         }
     },
     extraReducers:builder => {
         builder
             .addCase(fetchNotes.fulfilled, (state, action)=>{
                 console.log("PRINTING STATE FETCHNOTES: ",state);
-                return {...state, notesData: action.payload, notesNotFetched:false}
+                state = {
+                    notesData: action.payload,
+                    notesNotFetched:false
+                }
             })
             .addCase(addNote.fulfilled, (state, action) =>{
-                console.log("PRINTING STATE OF NOTES: ",state);
-                const newNotesData = state.notesData.concat(action.payload)
-                return {...state, notesData : newNotesData}
+                state = {
+                    ...state,
+                    notesData:state.notesData.concat(action.payload),
+                }
             })
             .addCase(deleteNote.fulfilled,(state,action)=>{
                 let newNotesData:any = state.notesData.filter((note:any)=>{
                     return note._id != action.payload.id;
                 })
                 console.log(newNotesData);
-                return {...state, notesData: newNotesData}
+                state = {
+                    ...state,
+                    notesData:newNotesData
+                }
             })
             .addCase(editNote.fulfilled, (state, action) =>{
                 // console.log(action.payload);    
@@ -65,7 +76,10 @@ export const notesSlice = createSlice({
                         break;
                     }
                 }
-                state.notesData = newNotesData
+                state = {
+                    ...state,
+                    notesData : newNotesData
+                }
             })
     }
 })
