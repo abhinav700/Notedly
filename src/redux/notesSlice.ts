@@ -33,16 +33,15 @@ export const notesSlice = createSlice({
     initialState,
     reducers:{
         intializeNotes:(state,action)=>{
+            console.log("INITIALIZE NOTES EXECUTED")
             return {...state, notesData:[], notesNotFetched:true}
         }
     },
     extraReducers:builder => {
         builder
             .addCase(fetchNotes.fulfilled, (state, action)=>{
-                // state.notesData = action.payload;
-                // state.notesNotFetched = false;
+                console.log("PRINTING STATE FETCHNOTES: ",state);
                 return {...state, notesData: action.payload, notesNotFetched:false}
-                // console.log(state.notesData);    
             })
             .addCase(addNote.fulfilled, (state, action) =>{
                 console.log("PRINTING STATE OF NOTES: ",state);
