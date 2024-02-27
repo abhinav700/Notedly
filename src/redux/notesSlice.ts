@@ -45,6 +45,7 @@ export const notesSlice = createSlice({
                 // console.log(state.notesData);    
             })
             .addCase(addNote.fulfilled, (state, action) =>{
+                console.log("PRINTING STATE OF NOTES: ",state);
                 const newNotesData = state.notesData.concat(action.payload)
                 return {...state, notesData : newNotesData}
             })
