@@ -1,4 +1,4 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk, current} from "@reduxjs/toolkit";
 import axios from "axios";
 const initialState = {
     notesData : [],
@@ -44,30 +44,25 @@ export const notesSlice = createSlice({
     extraReducers:builder => {
         builder
             .addCase(fetchNotes.fulfilled, (state, action)=>{
-                console.log("PRINTING STATE FETCHNOTES: ",state);
-                state = {
-                    notesData: action.payload,
-                    notesNotFetched:false
-                }
+                // console.log("Fet hing state in fetchnotes : ", current(state))
+                return {...state, notesData: action.payload, notesNotFetched:false}
             })
             .addCase(addNote.fulfilled, (state, action) =>{
-                state = {
-                    ...state,
-                    notesData:state.notesData.concat(action.payload),
-                }
+                console.log(current(state));
+                console.log(action.payload)
+                const newNotesData = state.notesData.concat(action.payload)
+                return {...state, notesData : newNotesData}
+
             })
             .addCase(deleteNote.fulfilled,(state,action)=>{
                 let newNotesData:any = state.notesData.filter((note:any)=>{
                     return note._id != action.payload.id;
                 })
                 console.log(newNotesData);
-                state = {
-                    ...state,
-                    notesData:newNotesData
-                }
+                return {...state, notesData: newNotesData}
             })
             .addCase(editNote.fulfilled, (state, action) =>{
-                // console.log(action.payload);    
+                // console.log(action.payload);      
                 const id = action.payload.note._id;
                 let newNotesData : any = state.notesData;
                 for(let i = 0; i<newNotesData.length;i++){
@@ -76,7 +71,8 @@ export const notesSlice = createSlice({
                         break;
                     }
                 }
-                state = {
+                console.log(newNotesData);
+                return {
                     ...state,
                     notesData : newNotesData
                 }
