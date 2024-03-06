@@ -48,10 +48,10 @@ export const notesSlice = createSlice({
                 return {...state, notesData: action.payload, notesNotFetched:false}
             })
             .addCase(addNote.fulfilled, (state, action) =>{
-                console.log(current(state));
                 console.log(action.payload)
                 const newNotesData = state.notesData?.concat(action.payload)
                 return {...state, notesData : newNotesData}
+                console.log("console log from addnote reducer",current(state));
 
             })
             .addCase(deleteNote.fulfilled,(state,action)=>{
