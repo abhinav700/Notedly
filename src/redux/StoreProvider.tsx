@@ -14,8 +14,8 @@ export default function StoreProvider({
   if (!storeRef.current) {
     // Create the store instance the first time this renders
     storeRef.current = store();
-    storeRef.current.dispatch(intializeNotes({}))
-    storeRef.current.dispatch(initializeUserData({}))
+    // storeRef.current.dispatch(intializeNotes({}))
+    // storeRef.current.dispatch(initializeUserData({}))
   }
   return <Provider store={storeRef.current}>{children}</Provider>;
 }
