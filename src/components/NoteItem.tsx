@@ -56,17 +56,17 @@ const Noteitem = (props: any) => {
             <Card.Title>
               {
                 <Card.Title>
-                  {note.title.length <= 54
+                  {note.title?.length <= 54
                     ? note.title
-                    : note.title.substr(0, 58) + "..."}
+                    : note.title?.substr(0, 58) + "..."}
                 </Card.Title>
               }
             </Card.Title>
             {
               <Card.Text style={{ height: "65%" }}>
-                {note.body.length <= 300
+                {note.body?.length <= 300
                   ? note.body
-                  : note.body.substr(0, 250) + "..."}
+                  : note.body?.substr(0, 250) + "..."}
               </Card.Text>
             }
           </Card.Body>

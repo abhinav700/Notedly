@@ -29,7 +29,7 @@ function Notes() {
         <div className="flex flex-wrap space-x-3">
         {notes
           ? notes.map((item: any) => {
-              return <Noteitem key = {item._id} note={item} />;
+              return <Noteitem  note={item} />;
             })
           : null}
       </div>

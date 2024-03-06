@@ -64,13 +64,10 @@ export const notesSlice = createSlice({
             .addCase(editNote.fulfilled, (state, action) =>{
                 // console.log(action.payload);      
                 const id = action.payload.note._id;
-                let newNotesData : any = state.notesData;
-                for(let i = 0; i<newNotesData.length;i++){
-                    if(newNotesData[i]._id == id){
-                        newNotesData[i] = action.payload;
-                        break;
-                    }
-                }
+                const newNotesData = (state.notesData as any).map((note : any) =>
+                    note._id === id ? action.payload : note
+                );
+            
                 console.log(newNotesData);
                 return {
                     ...state,
