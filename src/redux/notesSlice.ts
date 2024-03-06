@@ -50,12 +50,12 @@ export const notesSlice = createSlice({
             .addCase(addNote.fulfilled, (state, action) =>{
                 console.log(current(state));
                 console.log(action.payload)
-                const newNotesData = state.notesData.concat(action.payload)
+                const newNotesData = state.notesData?.concat(action.payload)
                 return {...state, notesData : newNotesData}
 
             })
             .addCase(deleteNote.fulfilled,(state,action)=>{
-                let newNotesData:any = state.notesData.filter((note:any)=>{
+                let newNotesData:any = state.notesData?.filter((note:any)=>{
                     return note._id != action.payload.id;
                 })
                 console.log(newNotesData);
@@ -64,7 +64,7 @@ export const notesSlice = createSlice({
             .addCase(editNote.fulfilled, (state, action) =>{
                 // console.log(action.payload);      
                 const id = action.payload.note._id;
-                const newNotesData = (state.notesData as any).map((note : any) =>
+                const newNotesData = (state.notesData as any)?.map((note : any) =>
                     note._id === id ? action.payload : note
                 );
             
