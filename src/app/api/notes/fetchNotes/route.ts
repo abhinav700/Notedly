@@ -7,8 +7,9 @@ import {cookies} from "next/headers";
 connect()
 export async function GET(request : NextRequest, response: NextResponse) {
 
+    const token =  cookies().get("token")!.value;
+    console.log("Printing token: ", token);
     try {
-        const token =  cookies().get("token")!.value;
         if(!token){
             return NextResponse.json({status:401, success:false, message:"Invalid auth-token"});
         }
