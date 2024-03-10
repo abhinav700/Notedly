@@ -31,6 +31,7 @@ const Noteitem = (props: any) => {
 
   const handleEditConfirm = async (e: any) => {
     e.preventDefault();
+    
     dispatch(editNote(note));
     setShowEditModal(false);
   };
@@ -95,57 +96,57 @@ const Noteitem = (props: any) => {
       </Modal>
 
       {/* Modal for editing notes */}
-      <Modal show={showEditModal} onHide={handleEditClose}>
-        <Modal.Header closeButton>
-          <Modal.Title> Edit the note</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="container my-3 flex justify-center items-center flex-col">
-            <form className="w-11/12">
-              <div className="mb-3 my-3">
-                <label
-                  htmlFor="title"
-                  className="block text-sm font-semibold text-gray-600"
-                >
-                  Title
-                </label>
-                <input
-                  type="text"
-                  className="w-full text-black px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                  id="title"
-                  aria-describedby="emailHelp"
-                  onChange={onChange}
-                  name="title"
-                  value={note.title}
-                />
-                <div id="titletext" className="form-text"></div>
-              </div>
-              <div className="mb-3">
-                <label
-                  htmlFor="body"
-                  className="block text-sm font-semibold text-gray-600"
-                >
-                  Body
-                </label>
-                <textarea
-                  className="w-full text-black px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                  id="body"
-                  rows={4}
-                  cols={50}
-                  onChange={onChange}
-                  name="body"
-                  value={note.body}
-                />
-              </div>
-            </form>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleEditClose}>
+        <Modal show={showEditModal} onHide={handleEditClose}>
+          <Modal.Header closeButton>
+            <Modal.Title> Edit the note</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="container my-3 flex justify-center items-center flex-col">
+              <form className="w-11/12">
+                <div className="mb-3 my-3">
+                  <label
+                    htmlFor="title"
+                    className="block text-sm font-semibold text-gray-600"
+                  >
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full text-black px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                    id="title"
+                    aria-describedby="emailHelp"
+                    onChange={onChange}
+                    name="title"
+                    value={note.title}
+                  />
+                  <div id="titletext" className="form-text"></div>
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="body"
+                    className="block text-sm font-semibold text-gray-600"
+                  >
+                    Body
+                  </label>
+                  <textarea
+                    className="w-full text-black px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                    id="body"
+                    rows={4}
+                    cols={50}
+                    onChange={onChange}
+                    name="body"
+                    value={note.body}
+                  />
+                </div>
+              </form>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleEditClose}>
             Close
           </Button>
           <Button
-            disabled={note.title.length < 5 || note.body.length < 5}
+            disabled={note.title?.length < 5 || note.body?.length < 5}
             variant="primary"
             onClick={handleEditConfirm}
           >

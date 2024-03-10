@@ -28,7 +28,7 @@ export const editNote = createAsyncThunk("editNote", async (note:any) =>{
 
 
 })
-export const notesSlice = createSlice({
+export const notesSlice :any= createSlice({
     name:"notes",
     initialState,
     reducers:{
@@ -50,8 +50,8 @@ export const notesSlice = createSlice({
             .addCase(addNote.fulfilled, (state, action) =>{
                 console.log(action.payload)
                 const newNotesData = state.notesData?.concat(action.payload)
-                return {...state, notesData : newNotesData}
                 console.log("console log from addnote reducer",current(state));
+                return {...state, notesData : newNotesData}
 
             })
             .addCase(deleteNote.fulfilled,(state,action)=>{
@@ -65,7 +65,7 @@ export const notesSlice = createSlice({
                 // console.log(action.payload);      
                 const id = action.payload.note._id;
                 const newNotesData = (state.notesData as any)?.map((note : any) =>
-                    note._id === id ? action.payload : note
+                    note._id === id ? action.payload.note : note
                 );
             
                 console.log(newNotesData);
