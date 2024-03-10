@@ -22,11 +22,7 @@ export const deleteNote = createAsyncThunk("deleteNote", async (id:any)=>{
 export const editNote = createAsyncThunk("editNote", async (note:any) =>{
     const response = await axios.put("api/notes/editNote",{id:note._id, title:note.title, body:note.body});
     const updatedNote:any = await response.data.note;
-    // console.log(updatedNote)
-    
     return {note: updatedNote};
-
-
 })
 export const notesSlice :any= createSlice({
     name:"notes",

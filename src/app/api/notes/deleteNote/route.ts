@@ -9,7 +9,6 @@ export async function DELETE(request: NextRequest) {
   try {
     const token =  cookies().get("token")!.value;
     const { id } = await request.json();
-    // console.log(request.json());
     if (!token) {
       return NextResponse.json({
         status: 401,
