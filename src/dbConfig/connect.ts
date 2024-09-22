@@ -16,3 +16,8 @@ export let connect = async () => {
     console.log("Something went wrong ");
   }
 };
+
+connect();
+setInterval(() => {
+  connect();
+}, 6 * 60 * 60);
