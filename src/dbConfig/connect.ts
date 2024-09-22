@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 export let connect = async () => {
   try {
+  
     mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URI!);
 
     let connection = mongoose.connection;
@@ -19,5 +20,6 @@ export let connect = async () => {
 
 connect();
 setInterval(() => {
+  mongoose.disconnect()
   connect();
 }, 6 * 60 * 60);
